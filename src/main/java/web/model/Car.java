@@ -2,9 +2,13 @@ package web.model;
 
 // 2. Создайте модель Car с тремя произвольными полями.
 public class Car {
-    private Long id;
+    private int id;
     private String model;
     private int series;
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Car() {
     }
@@ -21,7 +25,7 @@ public class Car {
                 '}';
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
@@ -37,8 +41,8 @@ public class Car {
         return series;
     }
 
-    public Car(String model, int series) {
-        this.id = (long) (Math.random() * 2);
+    public Car(int id, String model, int series ) {
+        this.id = id;
         this.model = model;
         this.series = series;
     }

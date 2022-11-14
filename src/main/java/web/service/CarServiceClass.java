@@ -9,27 +9,29 @@ import web.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 //3. Создайте список из 5 машин.
 //4. Создайте сервис с методом, который будет возвращать указанное число машин из созданного списка.
-@Service
+@Component
 public class CarServiceClass implements CarService {
 
-    List<Car> fiveCars;
+
+    List<Car> cars = new ArrayList<>(5);
+    int carsCount = 1;
 
     {
-        fiveCars = new ArrayList<>();
-        fiveCars.add(new Car("Volvo", 2022));
-        fiveCars.add(new Car("Mercedes", 2021));
-        fiveCars.add(new Car("Opel", 2020));
-        fiveCars.add(new Car("Skoda", 2000));
-        fiveCars.add(new Car("Lada", 1991));
+        cars.add(new Car(carsCount, "Volvo", 2022));
+        cars.add(new Car(++carsCount, "Mercedes", 2021));
+        cars.add(new Car(++carsCount, "Opel", 2020));
+        cars.add(new Car(++carsCount, "Skoda", 2000));
+        cars.add(new Car(++carsCount, "Lada", 1991));
     }
 
     @Override
-    public List<Car> getCarsList(int carsCount) {
-        return fiveCars.stream().limit(carsCount).toList();
+    public List<Car> getCarsList(Integer count) {
+        if (count != null) {
+            return cars.stream().limit(count).toList();
+        } else return cars;
     }
 
 }
